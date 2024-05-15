@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+
+void findAllSolution(int arr[], int C, int n, int idx){
+    if(n == idx){
+        if(C == 0){
+            for(int i = 0; i < n; i++){
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
+        }
+        return;
+    }
+
+    for(int x = 0; x <= C; x++){
+        arr[idx] = x;
+        findAllSolution(arr, C-x, n, idx+1);
+    }
+}
+
+int main(){
+    int n, C;
+    cout<<"\nEnter the value of n: ";
+    cin>>n;
+
+    cout<<"\nEnter the value of C: ";
+    cin>>C;
+
+    int arr[n] = {0};
+    findAllSolution(arr, C, n, 0);
+
+
+    return 0;
+}
