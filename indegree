@@ -1,0 +1,49 @@
+#include <iostream>
+
+using namespace std;
+
+const int MAX = 100;
+
+// Function to compute the in-degree and out-degree of each vertex in a directed graph
+void computeDegree(int graph[][MAX], int n) {
+    int inDegree[MAX] = {0};
+    int outDegree[MAX] = {0};
+
+    // Calculate in-degree and out-degree for each vertex
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (graph[i][j] == 1) {
+                // If there is an edge from i to j, increment out-degree of i and in-degree of j
+                outDegree[i]++;
+                inDegree[j]++;
+            }
+        }
+    }
+
+    // Print the in-degree and out-degree of each vertex
+    cout << "Vertex\tIn-Degree\tOut-Degree\n";
+    for (int i = 0; i < n; ++i) {
+        cout << i << "\t" << inDegree[i] << "\t\t" << outDegree[i] << endl;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of vertices in the directed graph: ";
+    cin >> n;
+
+    // Initialize the adjacency matrix with zeros
+    int graph[MAX][MAX] = {0};
+
+    cout << "Enter the adjacency matrix of the directed graph (1 for edge, 0 for no edge):\n";
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> graph[i][j];
+        }
+    }
+
+    // Compute in-degree and out-degree of each vertex
+    computeDegree(graph, n);
+
+    return 0;
+}
